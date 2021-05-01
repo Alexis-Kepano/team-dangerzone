@@ -122,7 +122,16 @@ function createZipCodeZones(zipCodeData) {
     //set the popup text. put the ZIP CODE inside h1 tag
     //console.log(feature)
 
-    let popuptext = `<h3>ZIP CODE</h3><hr><h2 id="zip">${feature.properties.ZIP}</h2>`
+    let popuptext;
+    if(feature.properties.ZIP==="6761"){
+      popuptext= `<h3>ZIP CODE</h3><hr><h2 id="zip">${"60607"}</h2>`;
+    }
+    else if (feature.properties.ZIP==="12311"){
+      popuptext=`<h3>ZIP CODE</h3><hr><h2 id="zip">${"60611"}</h2>`;
+    }
+    else{
+      popuptext=`<h3>ZIP CODE</h3><hr><h2 id="zip">${feature.properties.ZIP}</h2>`;
+    }
     layer.bindPopup(popuptext);
     //console.log(layer);
     /*********************************************************/
@@ -255,7 +264,7 @@ function getIcon(key) {
       icon: "ion-scissors",
       iconColor: "white",
       markerColor: "green",
-      shape: "circle",
+      shape: "square",
     }),
     "MOTOR VEHICLE THEFT": L.ExtraMarkers.icon({
       icon: "ion-model-s",
@@ -285,7 +294,7 @@ function getIcon(key) {
       icon: "ion-erlenmeyer-flask",
       iconColor: "black",
       markerColor: "blue",
-      shape: "circle",
+      shape: "square",
     }),
     "CRIMINAL TRESPASS": L.ExtraMarkers.icon({
       icon: "ion-android-walk",
@@ -307,21 +316,21 @@ function getIcon(key) {
     }),
     "ASSAULT": L.ExtraMarkers.icon({
       icon: "ion-hammer",
-      iconColor: "yellow",
-      markerColor: "orange",
+      iconColor: "black",
+      markerColor: "white",
       shape: "penta",
     }),
     "DECEPTIVE PRACTICE": L.ExtraMarkers.icon({
       icon: "ion-android-contacts",
       iconColor: "blue",
       markerColor: "yellow",
-      shape: "circle",
+      shape: "star",
     }),
     "STALKING": L.ExtraMarkers.icon({
       icon: "ion-person-stalker",
       iconColor: "violet",
       markerColor: "gold",
-      shape: "circle",
+      shape: "square",
     }),
     "SEX OFFENSE": L.ExtraMarkers.icon({
       icon: "ion-transgender",
@@ -446,7 +455,16 @@ function upDateChartTitle(){
   crimeBarChart.update();
 }
 function data_for_graph() {
-  let currentZipCrime = crimeZip.filter((elmnt) => elmnt["Zip Code"] === graph_zip);
+  let currentZipCrime;
+  if (graph_zip==="60607"){
+    currentZipCrime= crimeZip.filter((elmnt) => elmnt["Zip Code"] === graph_zip ||"60606" ||"60654"||"60661");
+  }
+  else if (graph_zip==="60611"){
+    currentZipCrime=crimeZip.filter((elmnt) => elmnt["Zip Code"] === graph_zip ||"60601"||"60602"||"60603"||"60604"||"60605");
+  }
+  else{
+    currentZipCrime=crimeZip.filter((elmnt) => elmnt["Zip Code"] === graph_zip);
+  }
   console.log(currentZipCrime)
   let currentZipCrimeData = [];
   unique_crime.forEach(ucrime => {
