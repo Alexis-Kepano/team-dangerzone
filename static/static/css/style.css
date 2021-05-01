@@ -1,0 +1,22 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map{
+ 
+  width: 100%;
+  height: 1000px;
+}
+.leaflet-popup-content {
+  text-align: center;
+}
+#mdiv{
+  height:500px;
+
+}
+canvas{
+  padding-top: 50px;
+  margin-top: 30px;
+}
+
